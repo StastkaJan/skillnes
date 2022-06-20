@@ -10,14 +10,12 @@
 </script>
 
 <script>
-  import ErrorScreen from '../screens/errors/e.svelte' // your own Error screen component
-  import NotFoundScreen from '../screens/errors/e404.svelte' // your own 404 screen component
-
   export let message, status
 </script>
 
 {#if status == 404}
-  <NotFoundScreen />
+  <h1>Not found</h1>
 {:else}
-  <ErrorScreen {message} {status} />
+  <h1>General error</h1>
+  <p>{message}</p>
 {/if}
