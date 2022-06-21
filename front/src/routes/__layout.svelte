@@ -1,10 +1,10 @@
-<nav>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-</nav>
+<script>
+  import Header from '../components/header.svelte'
+  import Footer from '../components/footer.svelte'
+</script>
+
+<Header />
 
 <slot />
 
-<footer>
-  <p>Today is {new Date()}</p>
-</footer>
+<Footer />
