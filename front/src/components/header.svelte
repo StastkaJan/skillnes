@@ -1,7 +1,18 @@
 <script>
   import Popup from './popup.svelte'
 
-  function showLogin() {}
+  let title = 'Title',
+    visible = false
+
+  function loginClick() {
+    title = 'Přihlášení'
+    visible = !visible
+  }
+
+  function registerClick() {
+    title = 'Registrace'
+    visible = !visible
+  }
 </script>
 
 <header>
@@ -14,11 +25,16 @@
     <a href="/">Domů</a>
     <a href="teachers">Učitelé</a>
     <a href="schools">Školy</a>
-    <button on:click={showLogin}>Login</button>
+    <button on:click={loginClick}>Přihlášení</button>
+    <button on:click={registerClick}>Registrace</button>
   </nav>
 </header>
 
-<Popup />
+<Popup {title} bind:visible>
+  <form>
+    <input />
+  </form>
+</Popup>
 
 <style>
   header {

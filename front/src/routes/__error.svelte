@@ -11,7 +11,8 @@
 </script>
 
 <script>
-  export let message, status
+  export let message = '',
+    status = 0
 </script>
 
 {#if status == 404}
