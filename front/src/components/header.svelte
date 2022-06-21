@@ -1,3 +1,9 @@
+<script>
+  import Popup from './popup.svelte'
+
+  function showLogin() {}
+</script>
+
 <header>
   <a href="/">
     <img src="../favicon.svg" alt="page icon" />
@@ -8,32 +14,40 @@
     <a href="/">Domů</a>
     <a href="teachers">Učitelé</a>
     <a href="schools">Školy</a>
-    <button>Login</button>
+    <button on:click={showLogin}>Login</button>
   </nav>
 </header>
 
+<Popup />
+
 <style>
   header {
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    font-size: 1.2rem;
+    background: #fff;
+    font-size: 1.2em;
+    z-index: 100;
   }
   header > a {
     display: flex;
     align-items: center;
+    font-size: 1.5em;
   }
   img {
     margin-right: 10px;
-    height: 32px;
+    height: 40px;
   }
   nav > * {
     margin: 0 5px;
+  }
+  nav > a {
     padding: 5px 10px;
   }
-  nav > button {
-    margin: 0 10px;
-    border-radius: 5px;
+  nav > a:hover {
+    border-color: inherit;
   }
 </style>

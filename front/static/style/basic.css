@@ -1,3 +1,16 @@
 html {
   font-family: 'Red Hat Display', sans-serif;
 }
+a,
+a:visited {
+  color: #000;
+  border-bottom: transparent 2px solid;
+  transition: .2s;
+}
+button {
+  padding: .4em 1em;
+  font-size: inherit;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+}
