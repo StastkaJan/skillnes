@@ -1,5 +1,7 @@
 <script>
   import Popup from './popup.svelte'
+  import Login from './login.svelte'
+  import Register from './register.svelte'
 
   let title = 'Title',
     visible = false
@@ -31,9 +33,11 @@
 </header>
 
 <Popup {title} bind:visible>
-  <form>
-    <input />
-  </form>
+  {#if title === 'Přihlášení'}
+    <Login />
+  {:else}
+    <Register />
+  {/if}
 </Popup>
 
 <style>

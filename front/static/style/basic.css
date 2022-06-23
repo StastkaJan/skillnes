@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 html {
   font-family: 'Red Hat Display', sans-serif;
 }
@@ -13,4 +16,22 @@ button {
   border: none;
   border-radius: 1em;
   cursor: pointer;
+}
+input {
+  display: block;
+  margin: 5px 0;
+  padding: .4em;
+  width: 100%;
+  border: 1px #000 solid;
+  border-radius: 5px;
+}
+input.error {
+  border-color: red;
+  outline-color: red;
+}
+form > * {
+  margin: 15px;
+}
+form small {
+  color: red;
 }
