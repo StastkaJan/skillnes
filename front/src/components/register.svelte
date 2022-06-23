@@ -7,8 +7,16 @@
     email = '',
     password = ''
 
-  function register() {
+  async function register() {
     console.log(name, email, password)
+    try {
+      const submit = await fetch('/api/register')
+      console.log(submit)
+      const data = await submit.json()
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 </script>
 

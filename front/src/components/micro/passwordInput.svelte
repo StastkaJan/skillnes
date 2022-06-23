@@ -1,4 +1,6 @@
 <script>
+  import { SvelteComponent } from 'svelte/internal'
+
   export let password = '',
     validation = true
 
@@ -17,7 +19,7 @@
   }
 
   function handleInput(e) {
-    password = e.target.value
+    password = e.target?.value
 
     if (!validation) return
 
