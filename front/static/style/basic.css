@@ -32,6 +32,7 @@ input.error {
 form > * {
   margin: 15px;
 }
-form small {
+form small,
+form .error {
   color: red;
 }

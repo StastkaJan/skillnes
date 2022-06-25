@@ -1,5 +1,6 @@
 <script>
   import { SvelteComponent } from 'svelte/internal'
+  import { passwordVal } from '../../validate/validate'
 
   export let password = '',
     validation = true
@@ -23,19 +24,7 @@
 
     if (!validation) return
 
-    if (password.length < 8) {
-      error = 'Heslo musí mít alespoň 8 znaků'
-    } else if (!password.match(/\d/)) {
-      error = 'Heslo musí obsahovat číslici'
-    } else if (!password.match(/[a-z]/)) {
-      error = 'Heslo musí obsahovat malé písmeno'
-    } else if (!password.match(/[A-Z]/)) {
-      error = 'Heslo musí obsahovat velké písmeno'
-    } else if (password.match(/\s/)) {
-      error = 'Heslo nesmí obsahovat mezeru'
-    } else {
-      error = ''
-    }
+    error = passwordVal(password)
   }
 </script>
 

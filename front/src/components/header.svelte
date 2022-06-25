@@ -1,14 +1,10 @@
 <script>
-  import { assets } from '$app/paths'
-
   import Popup from './popup.svelte'
   import Login from './login.svelte'
   import Register from './register.svelte'
 
   let title = 'Title',
     visible = false
-
-  $: console.log(assets)
 
   function navButton(tit = 'Default') {
     title = tit

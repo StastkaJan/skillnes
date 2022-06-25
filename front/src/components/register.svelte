@@ -5,30 +5,42 @@
 
   let name = '',
     email = '',
-    password = ''
+    password = '',
+    error = ''
 
   async function register() {
-    console.log(name, email, password)
+    if (name === '' || email === '' || password === '') {
+      error = 'Vyplňte pole formuláře'
+      return
+    }
+
     try {
-      const submit = await fetch('/api/register', {
+      let res = await fetch('/api/register', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          accept: 'application/json'
         },
         body: JSON.stringify({ email, name, password })
       })
-      console.log(submit)
-      const data = await submit.json()
-      console.log(data)
+      res = await res.json()
+      console.log(res)
+
+      if (res.result === 'error') {
+        error = res.text
+      }
     } catch (err) {
       console.log(err)
     }
   }
 </script>
 
-<form method="POST" on:submit|preventDefault={register}>
+<form on:submit|preventDefault={register}>
   <NameInput bind:name />
   <EmailInput bind:email />
   <PasswordInput bind:password />
+  {#if error != ''}
+    <p class="error">{error}</p>
+  {/if}
   <button type="submit">Registrovat</button>
 </form>

@@ -1,4 +1,4 @@
-import { Pool } from 'pg'
+import { Client } from 'pg'
 import 'dotenv/config'
 
 let host = process.env.dbHost
@@ -7,16 +7,31 @@ let user = process.env.dbUser
 let port = process.env.dbPort
 let password = process.env.dbPassword
 
-export const sql = new Pool({
-  user,
-  host,
-  database: db,
-  password,
-  port: Number(port),
-  ssl: {
-    rejectUnauthorized: false
-  },
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000
-})
+export class DBConnection {
+  constructor() {
+    this.sql = new Client({
+      user,
+      host,
+      database: db,
+      password,
+      port: Number(port),
+      ssl: {
+        rejectUnauthorized: false
+      }
+    })
+  }
+
+  async query(sql = '', data = ['']) {
+    await this.sql.connect()
+
+    try {
+      const res = await this.sql.query(sql, data)
+      return res
+    } catch (err) {
+      console.log(err)
+      return null
+    } finally {
+      this.sql.end()
+    }
+  }
+}
