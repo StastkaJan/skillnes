@@ -1,9 +1,8 @@
-import { sql } from '../../db/_database'
+import { getAll, insertUser } from '../../db/_user'
 
 export const get = async () => {
   try {
-    sql.connect()
-    const res = await sql.query('SELECT * FROM public.users')
+    const res = getAll()
     console.log(res)
     return {
       body: res
@@ -13,7 +12,20 @@ export const get = async () => {
     return {
       body: 'error'
     }
-  } finally {
-    sql.end()
+  }
+}
+
+export const post = async (name = '', email = '', password = '') => {
+  try {
+    const res = insertUser(name, email, password)
+    console.log(res)
+    return {
+      body: res
+    }
+  } catch (err) {
+    console.log(err)
+    return {
+      body: 'error'
+    }
   }
 }

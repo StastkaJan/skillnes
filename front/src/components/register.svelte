@@ -10,7 +10,13 @@
   async function register() {
     console.log(name, email, password)
     try {
-      const submit = await fetch('/api/register')
+      const submit = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, name, password })
+      })
       console.log(submit)
       const data = await submit.json()
       console.log(data)

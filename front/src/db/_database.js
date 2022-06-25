@@ -1,4 +1,4 @@
-import { Client } from 'pg'
+import { Pool } from 'pg'
 import 'dotenv/config'
 
 let host = process.env.dbHost
@@ -7,7 +7,7 @@ let user = process.env.dbUser
 let port = process.env.dbPort
 let password = process.env.dbPassword
 
-export const sql = new Client({
+export const sql = new Pool({
   user,
   host,
   database: db,
@@ -15,5 +15,8 @@ export const sql = new Client({
   port: Number(port),
   ssl: {
     rejectUnauthorized: false
-  }
+  },
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000
 })

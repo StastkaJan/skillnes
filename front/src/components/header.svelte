@@ -1,4 +1,6 @@
 <script>
+  import { assets } from '$app/paths'
+
   import Popup from './popup.svelte'
   import Login from './login.svelte'
   import Register from './register.svelte'
@@ -6,13 +8,10 @@
   let title = 'Title',
     visible = false
 
-  function loginClick() {
-    title = 'Přihlášení'
-    visible = !visible
-  }
+  $: console.log(assets)
 
-  function registerClick() {
-    title = 'Registrace'
+  function navButton(tit = 'Default') {
+    title = tit
     visible = !visible
   }
 </script>
@@ -25,10 +24,22 @@
 
   <nav>
     <a href="/">Domů</a>
-    <a href="teachers">Učitelé</a>
-    <a href="schools">Školy</a>
-    <button on:click={loginClick}>Přihlášení</button>
-    <button on:click={registerClick}>Registrace</button>
+    <a href="/teachers">Učitelé</a>
+    <a href="/schools">Školy</a>
+    <button
+      on:click={() => {
+        navButton('Přihlášení')
+      }}
+    >
+      Přihlášení
+    </button>
+    <button
+      on:click={() => {
+        navButton('Registrace')
+      }}
+    >
+      Registrace
+    </button>
   </nav>
 </header>
 
