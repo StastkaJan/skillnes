@@ -28,6 +28,8 @@
 
       if (res.result === 'error') {
         error = res.text
+      } else if (res.result === 'success') {
+        console.log(res.text)
       }
     } catch (err) {
       console.log(err)
