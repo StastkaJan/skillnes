@@ -1,21 +1,22 @@
 <script>
-  import { SvelteComponent } from 'svelte/internal'
   import { passwordVal } from '../../validate/validate'
+  import show_off from '$icons/show_off.svg'
+  import show_on from '$icons/show_on.svg'
 
   export let password = '',
     validation = true
 
   let type = 'password',
-    icon = 'show_off',
+    icon = show_off,
     error = ''
 
   function changeVisibility() {
     if (type === 'password') {
       type = 'text'
-      icon = 'show_on'
+      icon = show_on
     } else {
       type = 'password'
-      icon = 'show_off'
+      icon = show_off
     }
   }
 
@@ -32,7 +33,7 @@
   <label for="pasword">Heslo</label>
   <div>
     <input class:error={error.length > 0} {type} name="password" on:input={handleInput} />
-    <img src="icons/{icon}.svg" alt="show password" on:click={changeVisibility} />
+    <img src={icon} alt="show password" on:click={changeVisibility} />
   </div>
   {#if error.length > 0}
     <small>{error}</small>

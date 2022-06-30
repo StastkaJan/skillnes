@@ -28,6 +28,8 @@
 	"type": "module",
 	"dependencies": {
 		"bcrypt": "^5.0.1",
-		"pg": "^8.7.3"
+		"cookie": "^0.5.0",
+		"pg": "^8.7.3",
+		"uuid": "^8.3.2"
 	}
 }

@@ -32,7 +32,7 @@ export const insertUser = async (name = '', email = '', password = '') => {
       'INSERT INTO public.users (name, email, password) VALUES ($1, $2, $3) returning email',
       [name, email, password]
     )
-    return res
+    return res?.rows
   } catch (err) {
     console.log(err)
     return 'error'

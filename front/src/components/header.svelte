@@ -1,14 +1,34 @@
 <script>
-  import Popup from './popup.svelte'
-  import Login from './login.svelte'
-  import Register from './register.svelte'
+  import { createEventDispatcher } from 'svelte'
+  import { session } from '$app/stores'
 
-  let title = 'Title',
-    visible = false
+  let user = $session.user
+  $: user = $session.user
+
+  const dispatch = createEventDispatcher()
 
   function navButton(tit = 'Default') {
-    title = tit
-    visible = !visible
+    dispatch('navButton', {
+      tit
+    })
+  }
+
+  async function logout() {
+    try {
+      let res = await fetch('/api/logout', {
+        method: 'DELETE'
+      })
+      res = await res.json()
+
+      dispatch('outLogged', {
+        notifText: res.text,
+        notifType: res.result
+      })
+
+      $session.user = {}
+    } catch (err) {
+      console.log(err)
+    }
   }
 </script>
 
@@ -22,30 +42,26 @@
     <a href="/">Domů</a>
     <a href="/teachers">Učitelé</a>
     <a href="/schools">Školy</a>
-    <button
-      on:click={() => {
-        navButton('Přihlášení')
-      }}
-    >
-      Přihlášení
-    </button>
-    <button
-      on:click={() => {
-        navButton('Registrace')
-      }}
-    >
-      Registrace
-    </button>
+    {#if !user?.email}
+      <button
+        on:click={() => {
+          navButton('Přihlášení')
+        }}
+      >
+        Přihlásit
+      </button>
+      <button
+        on:click={() => {
+          navButton('Registrace')
+        }}
+      >
+        Registrovat
+      </button>
+    {:else}
+      <button on:click={logout}>Odhlásit</button>
+    {/if}
   </nav>
 </header>
-
-<Popup {title} bind:visible>
-  {#if title === 'Přihlášení'}
-    <Login />
-  {:else}
-    <Register />
-  {/if}
-</Popup>
 
 <style>
   header {

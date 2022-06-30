@@ -1,12 +1,17 @@
 <script>
+  import { createEventDispatcher } from 'svelte/internal'
   import NameInput from './micro/nameInput.svelte'
   import EmailInput from './micro/emailInput.svelte'
   import PasswordInput from './micro/passwordInput.svelte'
+
+  const dispatch = createEventDispatcher()
 
   let name = '',
     email = '',
     password = '',
     error = ''
+
+  $: (name || email || password) && (error = '')
 
   async function register() {
     if (name === '' || email === '' || password === '') {
@@ -29,7 +34,10 @@
       if (res.result === 'error') {
         error = res.text
       } else if (res.result === 'success') {
-        console.log(res.text)
+        dispatch('registered', {
+          notifText: res.text,
+          notifType: res.result
+        })
       }
     } catch (err) {
       console.log(err)
