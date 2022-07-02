@@ -36,3 +36,6 @@ form small,
 form .error {
   color: red;
 }
+main {
+  padding: 5vw;
+}

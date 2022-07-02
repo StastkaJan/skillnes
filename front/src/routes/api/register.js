@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt'
 import { getByEmail, insertUser } from '../../db/_user'
 import { nameVal, emailVal, passwordVal } from '../../validate/validate'
 
+/** @type {import('./__types/register').RequestHandler} */
 export const post = async ({ request }) => {
   let { name, email, password } = await request.json()
   let returnObj = {

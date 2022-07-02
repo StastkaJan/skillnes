@@ -17,7 +17,13 @@
 
 <div>
   <label for="email">Email</label>
-  <input class:error={error.length > 0} type="text" name="email" on:input={handleInput} />
+  <input
+    class:error={error.length > 0}
+    type="text"
+    name="email"
+    on:input={handleInput}
+    value={email}
+  />
   {#if error.length > 0}
     <small>{error}</small>
   {/if}

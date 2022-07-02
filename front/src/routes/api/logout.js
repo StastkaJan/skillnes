@@ -1,6 +1,7 @@
 import { parse, serialize } from 'cookie'
 import { removeSession } from '../../store/_sessions'
 
+/** @type {import('./__types/logout').RequestHandler} */
 export const del = async ({ request }) => {
   let returnObj = {
     status: 0,
@@ -13,8 +14,8 @@ export const del = async ({ request }) => {
   try {
     let session = parse(request.headers.get('cookie') || '')
 
-    if (session) {
-      removeSession(session)
+    if (session?.session) {
+      removeSession(session.session)
     }
 
     returnObj.status = 200

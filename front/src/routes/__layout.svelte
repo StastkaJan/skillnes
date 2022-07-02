@@ -31,7 +31,9 @@
 
 <Notification text={notifText} type={notifType} bind:visible={notifVisible} />
 
-<slot />
+<main>
+  <slot />
+</main>
 
 <Popup {title} bind:visible>
   {#if title === 'Přihlášení'}

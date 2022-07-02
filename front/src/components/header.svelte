@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte'
   import { session } from '$app/stores'
+  import { goto } from '$app/navigation'
 
   let user = $session.user
   $: user = $session.user
@@ -26,6 +27,8 @@
       })
 
       $session.user = {}
+
+      goto('/')
     } catch (err) {
       console.log(err)
     }
@@ -58,6 +61,7 @@
         Registrovat
       </button>
     {:else}
+      <a href="/profile">Profil</a>
       <button on:click={logout}>Odhlásit</button>
     {/if}
   </nav>

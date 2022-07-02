@@ -21,6 +21,11 @@ export const getSession = (sessionId = '') => {
   return session
 }
 
+export const getSessionEmail = (userEmail = '') => {
+  let session = sessions.find(session => session.email === userEmail)
+  return session
+}
+
 export const updateSession = (sessionId = '', name = '', value = '') => {
   let session = sessions.find(session => session.id === sessionId)
   session[name] = value

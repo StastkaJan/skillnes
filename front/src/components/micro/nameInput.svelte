@@ -17,7 +17,13 @@
 
 <div>
   <label for="name">Jméno</label>
-  <input class:error={error.length > 0} type="text" name="name" on:input={handleInput} />
+  <input
+    class:error={error.length > 0}
+    type="text"
+    name="name"
+    on:input={handleInput}
+    value={name}
+  />
   {#if error.length > 0}
     <small>{error}</small>
   {/if}

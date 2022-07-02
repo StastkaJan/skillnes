@@ -3,6 +3,7 @@ import { serialize } from 'cookie'
 import { getByEmail } from '../../db/_user'
 import { createSession } from '../../store/_sessions'
 
+/** @type {import('./__types/login').RequestHandler} */
 export const post = async ({ request }) => {
   let { email, password } = await request.json()
   let returnObj = {
