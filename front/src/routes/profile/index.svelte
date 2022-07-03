@@ -1,13 +1,12 @@
 <script context="module">
-  import { nameVal } from '$val/validate.js'
   /** @type {import('./__types/index').Load} */
   export async function load({ session, fetch }) {
     try {
       let res = await fetch(`/api/${session.user.email}`)
-      res = await res.json()
+      let resJson = await res.json()
       return {
         props: {
-          user: res.user
+          user: resJson.user
         }
       }
     } catch (err) {
@@ -26,7 +25,12 @@
   import NameInput from '$comp/micro/nameInput.svelte'
   import PasswordInput from '$comp/micro/passwordInput.svelte'
 
-  export let user = {}
+  export let user = {
+    name: '',
+    email: ''
+  }
+
+  const dispatch = createEventDispatcher()
 
   let { name, email } = user,
     password = '',
@@ -46,16 +50,16 @@
         },
         body: JSON.stringify({ name, email, password })
       })
-      res = await res.json()
+      let resJson = await res.json()
 
-      if (res.result === 'error') {
-        error = res.text
-      } else if (res.result === 'success') {
+      if (resJson.result === 'error') {
+        error = resJson.text
+      } else if (resJson.result === 'success') {
         dispatch('logged', {
-          notifText: res.text,
-          notifType: res.result
+          notifText: resJson.text,
+          notifType: resJson.result
         })
-        $session.user = { email }
+        $session.user.email = email
       }
     } catch (err) {
       console.log(err)

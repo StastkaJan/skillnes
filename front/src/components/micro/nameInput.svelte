@@ -6,6 +6,7 @@
 
   let error = ''
 
+  // @ts-ignore
   function handleInput(e) {
     name = e.target?.value
 

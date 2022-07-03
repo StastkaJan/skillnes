@@ -27,16 +27,16 @@
         },
         body: JSON.stringify({ email, password })
       })
-      res = await res.json()
+      let resJson = await res.json()
 
-      if (res.result === 'error') {
-        error = res.text
-      } else if (res.result === 'success') {
+      if (resJson.result === 'error') {
+        error = resJson.text
+      } else if (resJson.result === 'success') {
         dispatch('logged', {
-          notifText: res.text,
-          notifType: res.result
+          notifText: resJson.text,
+          notifType: resJson.result
         })
-        $session.user = { email }
+        $session.user.email = email
       }
     } catch (err) {
       console.log(err)

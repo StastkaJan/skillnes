@@ -28,15 +28,14 @@
         },
         body: JSON.stringify({ email, name, password })
       })
-      res = await res.json()
-      console.log(res)
+      let resJson = await res.json()
 
-      if (res.result === 'error') {
-        error = res.text
-      } else if (res.result === 'success') {
+      if (resJson.result === 'error') {
+        error = resJson.text
+      } else if (resJson.result === 'success') {
         dispatch('registered', {
-          notifText: res.text,
-          notifType: res.result
+          notifText: resJson.text,
+          notifType: resJson.result
         })
       }
     } catch (err) {

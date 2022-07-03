@@ -1,11 +1,12 @@
 <script>
-  import { emailVal } from '../../validate/validate'
+  import { emailVal } from '$val/validate'
 
   export let email = '',
     validation = true
 
   let error = ''
 
+  // @ts-ignore
   function handleInput(e) {
     email = e.target?.value
 

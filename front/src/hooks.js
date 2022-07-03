@@ -9,11 +9,13 @@ export async function handle({ event, resolve }) {
     let sessionSaved = getSessionFromApi(session.session)
 
     if (sessionSaved) {
+      // @ts-ignore
       event.locals.user = { email: sessionSaved.email }
       return resolve(event)
     }
   }
 
+  // @ts-ignore
   event.locals.user = null
 
   return resolve(event)
@@ -21,9 +23,11 @@ export async function handle({ event, resolve }) {
 
 /** @type {import('@sveltejs/kit').GetSession} */
 export function getSession(event) {
+  // @ts-ignore
   return event?.locals?.user
     ? {
         user: {
+          // @ts-ignore
           email: event.locals.user.email
         }
       }

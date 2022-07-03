@@ -1,10 +1,10 @@
 <script>
-  import Header from '../components/header.svelte'
-  import Footer from '../components/footer.svelte'
-  import Notification from '../components/notification.svelte'
-  import Popup from '../components/popup.svelte'
-  import Login from '../components/login.svelte'
-  import Register from '../components/register.svelte'
+  import Header from '$comp/header.svelte'
+  import Footer from '$comp/footer.svelte'
+  import Notification from '$comp/notification.svelte'
+  import Popup from '$comp/popup.svelte'
+  import Login from '$comp/login.svelte'
+  import Register from '$comp/register.svelte'
 
   let notifText = 'Text',
     notifType = 'success',
@@ -13,11 +13,13 @@
   let title = 'Title',
     visible = false
 
+  // @ts-ignore
   function showPopup(event) {
     title = event.detail.tit
     visible = true
   }
 
+  // @ts-ignore
   function showNotification(event) {
     notifText = event.detail.notifText
     notifType = event.detail.notifType

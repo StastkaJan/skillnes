@@ -7,7 +7,7 @@ import { nameVal, emailVal, passwordVal } from '$val/validate'
 /** @type {import('./__types/[email]').RequestHandler} */
 export const get = async ({ params }) => {
   try {
-    let user
+    let user = {}
     let session = getSessionEmail(params.email)
 
     if (!session) {
@@ -17,14 +17,14 @@ export const get = async ({ params }) => {
     }
 
     if (params.email) {
+      // @ts-ignore
       user = await getByEmail(params.email)
     }
 
+    // @ts-ignore
     if (user && user[0]) {
-      user = {
-        name: user[0].name,
-        email: user[0].email
-      }
+      // @ts-ignore
+      let user = user[0]
 
       return {
         body: { user }
@@ -64,7 +64,9 @@ export const post = async ({ request, params }) => {
   }
 
   Object.keys(validation).forEach(key => {
+    // @ts-ignore
     if (validation[key] === '') {
+      // @ts-ignore
       delete validation[key]
     }
   })
@@ -73,6 +75,7 @@ export const post = async ({ request, params }) => {
     returnObj.status = 200
     returnObj.body = JSON.stringify({
       result: 'error',
+      // @ts-ignore
       text: validation[Object.keys(validation)[0]]
     })
     return returnObj
@@ -89,11 +92,13 @@ export const post = async ({ request, params }) => {
 
     let session = getSession(sessionId)
 
+    // @ts-ignore
     if (session.email !== params.email) {
       returnObj.status = 403
       return returnObj
     }
 
+    // @ts-ignore
     if (emailsInDB.length > 0 && params.email !== email) {
       returnObj.status = 200
       returnObj.body = JSON.stringify({

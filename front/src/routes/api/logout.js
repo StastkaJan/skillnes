@@ -23,6 +23,7 @@ export const del = async ({ request }) => {
       result: 'success',
       text: 'Odhlášení proběhlo úspěšně!'
     })
+    // @ts-ignore
     returnObj.headers['Set-Cookie'] = serialize('session', '', {
       path: '/',
       httpOnly: true,

@@ -19,6 +19,7 @@ export const post = async ({ request }) => {
 
     if (user == null || user === 'error') throw new Error()
 
+    // @ts-ignore
     if (user.length < 1) {
       returnObj.status = 200
       returnObj.body = JSON.stringify({
@@ -28,6 +29,7 @@ export const post = async ({ request }) => {
       return returnObj
     }
 
+    // @ts-ignore
     let compare = await bcrypt.compare(password, user[0].password)
 
     if (compare) {
@@ -36,6 +38,7 @@ export const post = async ({ request }) => {
         result: 'success',
         text: 'Přihlášení proběhlo úspěšně!'
       })
+      // @ts-ignore
       returnObj.headers['Set-Cookie'] = serialize('session', createSession(email).id, {
         path: '/',
         httpOnly: true,

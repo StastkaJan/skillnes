@@ -1,6 +1,9 @@
 import { v4 as uuidv4 } from 'uuid'
 
-let sessions = []
+let sessions: Array<{
+  email: string,
+  id: string
+}> = []
 
 export const createSession = (userEmail = '') => {
   let activeSession = sessions.find(session => session.email === userEmail)
@@ -26,8 +29,9 @@ export const getSessionEmail = (userEmail = '') => {
   return session
 }
 
-export const updateSession = (sessionId = '', name = '', value = '') => {
+export const updateSession = (sessionId = '', name: 'id' | 'email' = 'id', value = '') => {
   let session = sessions.find(session => session.id === sessionId)
+  if (!session) throw new Error()
   session[name] = value
   return 'success'
 }

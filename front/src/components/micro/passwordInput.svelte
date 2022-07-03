@@ -20,6 +20,7 @@
     }
   }
 
+  // @ts-ignore
   function handleInput(e) {
     password = e.target?.value
 

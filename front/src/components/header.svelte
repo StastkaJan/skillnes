@@ -19,11 +19,11 @@
       let res = await fetch('/api/logout', {
         method: 'DELETE'
       })
-      res = await res.json()
+      let resJson = await res.json()
 
       dispatch('outLogged', {
-        notifText: res.text,
-        notifType: res.result
+        notifText: resJson.text,
+        notifType: resJson.result
       })
 
       $session.user = {}

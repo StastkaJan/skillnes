@@ -19,7 +19,9 @@ export const post = async ({ request }) => {
   validation.password = passwordVal(password)
 
   Object.keys(validation).forEach(key => {
+    // @ts-ignore
     if (validation[key] === '') {
+      // @ts-ignore
       delete validation[key]
     }
   })
@@ -28,6 +30,7 @@ export const post = async ({ request }) => {
     returnObj.status = 200
     returnObj.body = JSON.stringify({
       result: 'error',
+      // @ts-ignore
       text: validation[Object.keys(validation)[0]]
     })
     return returnObj
@@ -38,6 +41,7 @@ export const post = async ({ request }) => {
 
     if (emailsInDB == null || emailsInDB === 'error') throw new Error()
 
+    // @ts-ignore
     if (emailsInDB.length > 0) {
       returnObj.status = 200
       returnObj.body = JSON.stringify({
