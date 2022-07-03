@@ -1,10 +1,9 @@
 import bcrypt from 'bcrypt'
 import { serialize } from 'cookie'
-import { getByEmail } from '../../db/_user'
-import { createSession } from '../../store/_sessions'
+import { getByEmail } from '$db/_user'
+import { createSession } from '$store/_sessions'
 
-/** @type {import('./__types/login').RequestHandler} */
-export const post = async ({ request }) => {
+export const post = async ({ request }: {request: Request}) => {
   let { email, password } = await request.json()
   let returnObj = {
     status: 0,

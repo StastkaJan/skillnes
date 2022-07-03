@@ -6,6 +6,8 @@
   let user = $session.user
   $: user = $session.user
 
+  let y = 0
+
   const dispatch = createEventDispatcher()
 
   function navButton(tit = 'Default') {
@@ -35,7 +37,9 @@
   }
 </script>
 
-<header>
+<svelte:window bind:scrollY={y} />
+
+<header class:scrolled={y > 500}>
   <a href="/">
     <img src="../favicon.svg" alt="page icon" />
     Skillnes
@@ -69,15 +73,18 @@
 
 <style>
   header {
-    position: sticky;
-    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background: #fff;
     font-size: 1.2em;
     z-index: 100;
+  }
+  header.scrolled {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
   }
   header > a {
     display: flex;

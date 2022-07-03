@@ -8,6 +8,8 @@ let port = process.env.dbPort
 let password = process.env.dbPassword
 
 export class DBConnection {
+  sql
+  
   constructor() {
     this.sql = new Client({
       user,

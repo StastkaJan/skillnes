@@ -29,6 +29,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Skillnes</title>
+</svelte:head>
+
 <Header on:navButton={showPopup} on:outLogged={showNotification} />
 
 <Notification text={notifText} type={notifType} bind:visible={notifVisible} />

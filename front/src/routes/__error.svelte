@@ -15,6 +15,10 @@
     status = 0
 </script>
 
+<svelte:head>
+  <title>Error | Skillnes</title>
+</svelte:head>
+
 {#if status == 404}
   <h1>Not found</h1>
 {:else}

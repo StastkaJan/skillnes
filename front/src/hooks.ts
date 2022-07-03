@@ -1,7 +1,8 @@
+import type { GetSession } from '@sveltejs/kit'
 import { parse } from 'cookie'
-import { getSession as getSessionFromApi } from './store/_sessions'
+import { getSession as getSessionFromApi } from '$store/_sessions'
 
-/** @type {import('@sveltejs/kit').Handle} */
+// @ts-ignore
 export async function handle({ event, resolve }) {
   let session = parse(event.request.headers.get('cookie') || '')
 
@@ -21,8 +22,7 @@ export async function handle({ event, resolve }) {
   return resolve(event)
 }
 
-/** @type {import('@sveltejs/kit').GetSession} */
-export function getSession(event) {
+export function getSession(event: GetSession) {
   // @ts-ignore
   return event?.locals?.user
     ? {

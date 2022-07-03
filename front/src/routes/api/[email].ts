@@ -4,8 +4,7 @@ import { getByEmail, updateUser } from '$db/_user'
 import { getSession, getSessionEmail } from '$store/_sessions'
 import { nameVal, emailVal, passwordVal } from '$val/validate'
 
-/** @type {import('./__types/[email]').RequestHandler} */
-export const get = async ({ params }) => {
+export const get = async ({ params }: {params: {email: string}}) => {
   try {
     let user = {}
     let session = getSessionEmail(params.email)
@@ -42,8 +41,7 @@ export const get = async ({ params }) => {
   }
 }
 
-/** @type {import('./__types/[email]').RequestHandler} */
-export const post = async ({ request, params }) => {
+export const post = async ({ request, params }: {request: Request, params: {email: string}}) => {
   let { name, email, password } = await request.json()
   let returnObj = {
     status: 0,
@@ -52,7 +50,15 @@ export const post = async ({ request, params }) => {
     },
     body: {}
   }
-  let validation = {}
+  let validation: {
+    name: string,
+    email: string,
+    password: string
+  } = {
+    name: '',
+    email: '',
+    password: ''
+  }
 
   console.log(params.email)
   console.log(parse(request.headers.get('cookie') || '')?.session)

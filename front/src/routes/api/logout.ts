@@ -1,8 +1,7 @@
 import { parse, serialize } from 'cookie'
-import { removeSession } from '../../store/_sessions'
+import { removeSession } from '$store/_sessions'
 
-/** @type {import('./__types/logout').RequestHandler} */
-export const del = async ({ request }) => {
+export const del = async ({ request }: {request: Request}) => {
   let returnObj = {
     status: 0,
     headers: {

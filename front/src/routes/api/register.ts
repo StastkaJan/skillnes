@@ -1,9 +1,8 @@
 import bcrypt from 'bcrypt'
-import { getByEmail, insertUser } from '../../db/_user'
-import { nameVal, emailVal, passwordVal } from '../../validate/validate'
+import { getByEmail, insertUser } from '$db/_user'
+import { nameVal, emailVal, passwordVal } from '$val/validate'
 
-/** @type {import('./__types/register').RequestHandler} */
-export const post = async ({ request }) => {
+export const post = async ({ request }: {request: Request}) => {
   let { name, email, password } = await request.json()
   let returnObj = {
     status: 0,
@@ -12,7 +11,15 @@ export const post = async ({ request }) => {
     },
     body: {}
   }
-  let validation = {}
+  let validation: {
+    name: string,
+    email: string,
+    password: string
+  } = {
+    name: '',
+    email: '',
+    password: ''
+  }
 
   validation.name = nameVal(name)
   validation.email = emailVal(email)
