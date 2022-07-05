@@ -22,11 +22,9 @@ export const get = async ({ params }: {params: {email: string}}) => {
 
     // @ts-ignore
     if (user && user[0]) {
-      // @ts-ignore
-      let user = user[0]
-
       return {
-        body: { user }
+        // @ts-ignore
+        body: { user: user[0] }
       }
     }
 

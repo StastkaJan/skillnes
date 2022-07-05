@@ -1,13 +1,13 @@
 <svelte:head>
-  <title>Přehled učitelů | Skillnes</title>
+  <title>Přehled škol | Skillnes</title>
 </svelte:head>
 
 <main>
   <section>
     <div>
-      <h1>Přehled učitelů<span>Najdi parťáka, který ti pomůže</span></h1>
+      <h1>Přehled předmětů<span>Najdi předmět, který ti moc nejde</span></h1>
 
-      <input type="search" placeholder="Amanda Melounová" />
+      <input type="search" placeholder="Matematika" />
     </div>
     <div>
       <img

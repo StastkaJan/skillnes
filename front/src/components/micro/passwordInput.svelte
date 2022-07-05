@@ -51,5 +51,6 @@
     right: 10px;
     top: 15%;
     height: 70%;
+    width: unset;
   }
 </style>

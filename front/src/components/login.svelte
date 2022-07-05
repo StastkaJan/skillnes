@@ -36,7 +36,7 @@
           notifText: resJson.text,
           notifType: resJson.result
         })
-        $session.user.email = email
+        $session.user = { email }
       }
     } catch (err) {
       console.log(err)

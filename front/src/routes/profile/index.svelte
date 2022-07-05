@@ -38,8 +38,6 @@
 
   $: (email || password) && (error = '')
 
-  console.log(user)
-
   async function saveDetails() {
     try {
       let res = await fetch(`/api/${user.email}`, {
@@ -67,8 +65,12 @@
   }
 </script>
 
+<svelte:head>
+  <title>Základní údaje | Profil | Skillnes</title>
+</svelte:head>
+
 <div>
-  <h1>Profil</h1>
+  <h1>Základní údaje</h1>
 
   <form on:submit|preventDefault={saveDetails}>
     <NameInput bind:name />
@@ -80,3 +82,13 @@
     <button type="submit">Uložit</button>
   </form>
 </div>
+
+<style>
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5vw 5vw;
+  }
+</style>

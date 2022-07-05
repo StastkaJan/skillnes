@@ -2,6 +2,7 @@
   import { createEventDispatcher } from 'svelte'
   import { session } from '$app/stores'
   import { goto } from '$app/navigation'
+  import Logo from '$icons/logo.svelte'
 
   let user = $session.user
   $: user = $session.user
@@ -41,14 +42,15 @@
 
 <header class:scrolled={y > 500}>
   <a href="/">
-    <img src="../favicon.svg" alt="page icon" />
+    <Logo scrolled={y} />
     Skillnes
   </a>
 
   <nav>
-    <a href="/">Domů</a>
-    <a href="/teachers">Učitelé</a>
-    <a href="/schools">Školy</a>
+    <a href="/" sveltekit:prefetch>Domů</a>
+    <a href="/teachers" sveltekit:prefetch>Učitelé</a>
+    <a href="/schools" sveltekit:prefetch>Školy</a>
+    <a href="/subjects" sveltekit:prefetch>Předměty</a>
     {#if !user?.email}
       <button
         on:click={() => {
@@ -65,7 +67,7 @@
         Registrovat
       </button>
     {:else}
-      <a href="/profile">Profil</a>
+      <a href="/profile" sveltekit:prefetch>Profil</a>
       <button on:click={logout}>Odhlásit</button>
     {/if}
   </nav>
@@ -73,6 +75,9 @@
 
 <style>
   header {
+    position: absolute;
+    top: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,18 +87,15 @@
   }
   header.scrolled {
     position: fixed;
-    top: 0;
-    width: 100%;
-    background: #fff;
+    background: linear-gradient(120deg, #5f1f69 5%, #341de1 65%, #00d5ff 110%);
+  }
+  header * {
+    color: #fff;
   }
   header > a {
     display: flex;
     align-items: center;
     font-size: 1.5em;
-  }
-  img {
-    margin-right: 10px;
-    height: 40px;
   }
   nav > * {
     margin: 0 5px;
@@ -103,5 +105,8 @@
   }
   nav > a:hover {
     border-color: inherit;
+  }
+  button {
+    background: #fff3;
   }
 </style>

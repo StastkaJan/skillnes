@@ -22,6 +22,7 @@
     right: 0;
     left: 0;
     color: #fff;
+    z-index: 1000;
   }
   p {
     text-align: center;
