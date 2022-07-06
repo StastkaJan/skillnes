@@ -4,12 +4,13 @@ import { getByEmail, updateUser } from '$db/_user'
 import { getSession, getSessionEmail } from '$store/_sessions'
 import { nameVal, emailVal, passwordVal } from '$val/validate'
 
-export const get = async ({ params }: {params: {email: string}}) => {
+export const get = async ({ request, params }: {request: Request, params: {email: string}}) => {
   try {
     let user = {}
     let session = getSessionEmail(params.email)
+    let sessionId = parse(request.headers.get('cookie') || '')?.session
 
-    if (!session) {
+    if (!session || session.id !== sessionId) {
       return {
         status: 403
       }
@@ -48,18 +49,11 @@ export const post = async ({ request, params }: {request: Request, params: {emai
     },
     body: {}
   }
-  let validation: {
-    name: string,
-    email: string,
-    password: string
-  } = {
+  let validation = {
     name: '',
     email: '',
     password: ''
   }
-
-  console.log(params.email)
-  console.log(parse(request.headers.get('cookie') || '')?.session)
 
   validation.name = nameVal(name)
   validation.email = emailVal(email)
@@ -91,13 +85,10 @@ export const post = async ({ request, params }: {request: Request, params: {emai
     if (emailsInDB == null || emailsInDB === 'error') throw new Error()
 
     let sessionId = parse(request.headers.get('cookie') || '')?.session
-
-    if (!sessionId) throw new Error()
-
     let session = getSession(sessionId)
 
     // @ts-ignore
-    if (session.email !== params.email) {
+    if (!sessionId || session.email !== params.email) {
       returnObj.status = 403
       return returnObj
     }

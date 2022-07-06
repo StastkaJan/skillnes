@@ -29,3 +29,31 @@ export const passwordVal = (password = '') => {
 
   return ''
 }
+
+export const activeVal = (active = '') => {
+  if (active !== 'T' && active !== 'F') {
+    return 'Neplatná hodnota viditelnosti stránky'
+  }
+
+  return ''
+}
+
+export const siteVal = (site = '') => {
+  if (site.length < 1) {
+    return 'Adresa nesmí být prázdná'
+  } else if (site.match(/\s/)) {
+    return 'Adresa nesmí obsahovat mezeru'
+  } else if (!site.match(/^[a-z]+$/)) {
+    return 'Adresa musí obsahovat pouze malá písmena bez diakritiky'
+  } 
+
+  return ''
+}
+
+export const bioVal = (bio = '') => {
+  if (bio.length < 1) {
+    return 'Text nesmí být prázdný'
+  }
+
+  return ''
+}

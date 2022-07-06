@@ -38,7 +38,7 @@ export const post = async ({ request }: {request: Request}) => {
         text: 'Přihlášení proběhlo úspěšně!'
       })
       // @ts-ignore
-      returnObj.headers['Set-Cookie'] = serialize('session', createSession(email).id, {
+      returnObj.headers['Set-Cookie'] = serialize('session', createSession(email, user[0].id).id, {
         path: '/',
         httpOnly: true,
         sameSite: 'strict',

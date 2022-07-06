@@ -24,7 +24,4 @@
     fill-opacity: 1;
     stroke-width: 0.0227434;
   }
-  svg.scrolled {
-    fill: #000;
-  }
 </style>

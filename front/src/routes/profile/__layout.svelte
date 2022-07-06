@@ -17,7 +17,7 @@
 <main>
   <nav>
     <a href="/profile" sveltekit:prefetch>Základní údaje</a>
-    <a href="/profile" sveltekit:prefetch>Základní údaje</a>
+    <a href="/profile/teacher" sveltekit:prefetch>Profil učitele</a>
     <a href="/profile" sveltekit:prefetch>Základní údaje</a>
     <a href="/profile" sveltekit:prefetch>Základní údaje</a>
   </nav>

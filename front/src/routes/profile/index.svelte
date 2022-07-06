@@ -2,7 +2,7 @@
   /** @type {import('./__types/index').Load} */
   export async function load({ session, fetch }) {
     try {
-      let res = await fetch(`/api/${session.user.email}`)
+      let res = await fetch(`/api/profile/${session.user.email}`)
       let resJson = await res.json()
       return {
         props: {
@@ -40,7 +40,7 @@
 
   async function saveDetails() {
     try {
-      let res = await fetch(`/api/${user.email}`, {
+      let res = await fetch(`/api/profile/${user.email}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

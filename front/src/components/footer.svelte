@@ -32,13 +32,7 @@
     align-items: center;
   }
   textarea {
-    padding: 0.8em;
     width: 50%;
-    min-width: 300px;
-    max-width: 400px;
-    height: 150px;
-    border-radius: 10px;
-    resize: none;
   }
   button {
     margin: 10px;

@@ -20,15 +20,31 @@ button {
   border-radius: 1em;
   cursor: pointer;
 }
-input {
+input,
+textarea {
   display: block;
   margin: 5px 0;
-  padding: .4em;
   width: 100%;
   border: 1px #000 solid;
+}
+input {
+  padding: .4em;
   border-radius: 5px;
 }
-input.error {
+input[type=checkbox] {
+  display: inline;
+  width: 20%;
+}
+textarea {
+  padding: 0.8em;
+  min-width: 300px;
+  max-width: 400px;
+  height: 150px;
+  border-radius: 10px;
+  resize: none;
+}
+input.error,
+textarea.error {
   border-color: red;
   outline-color: red;
 }

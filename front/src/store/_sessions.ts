@@ -2,16 +2,18 @@ import { v4 as uuidv4 } from 'uuid'
 
 let sessions: Array<{
   email: string,
-  id: string
+  id: string,
+  userId: number
 }> = []
 
-export const createSession = (userEmail = '') => {
+export const createSession = (userEmail = '', userId = 0) => {
   let activeSession = sessions.find(session => session.email === userEmail)
 
   if (activeSession) return activeSession
 
   let session = {
     id: uuidv4(),
+    userId,
     email: userEmail
   }
   sessions.push(session)
