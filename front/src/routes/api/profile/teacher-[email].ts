@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt'
 import { parse } from 'cookie'
 import { getTeacherById, insertTeacher, updateTeacher, getTeacherSite } from '$db/_teacher'
 import { getSession, getSessionEmail } from '$store/_sessions'
