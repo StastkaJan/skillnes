@@ -1,10 +1,14 @@
 <script>
+  import { navigating } from '$app/stores'
   import Header from '$comp/header.svelte'
   import Footer from '$comp/footer.svelte'
   import Notification from '$comp/notification.svelte'
   import Popup from '$comp/popup.svelte'
   import Login from '$comp/login.svelte'
   import Register from '$comp/register.svelte'
+  import Loader from '$comp/loader.svelte'
+
+  $: console.log($navigating)
 
   let notifText = 'Text',
     notifType = 'success',
@@ -36,6 +40,10 @@
 <Header on:navButton={showPopup} on:outLogged={showNotification} />
 
 <Notification text={notifText} type={notifType} bind:visible={notifVisible} />
+
+{#if $navigating}
+  <Loader />
+{/if}
 
 <slot />
 

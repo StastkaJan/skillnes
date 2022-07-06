@@ -20,7 +20,11 @@ export const get = async ({ request, params }: {request: Request, params: {email
     if (teacher && teacher[0]) {
       return {
         // @ts-ignore
-        body: { teacher: teacher[0] }
+        body: { teacher: {
+          active: teacher[0].active,
+          site: teacher[0].site,
+          bio: teacher[0].bio
+        } }
       }
     }
 

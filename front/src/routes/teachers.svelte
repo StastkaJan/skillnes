@@ -1,3 +1,34 @@
+<script context="module">
+  /** @type {import('./__types/teachers').Load} */
+  export async function load({ fetch }) {
+    try {
+      let res = await fetch(`/api/teachers`)
+      let resJson = await res.json()
+      return {
+        props: {
+          teachers: resJson.teachers
+        }
+      }
+    } catch (err) {
+      console.log(err)
+      return {
+        status: 500
+      }
+    }
+  }
+</script>
+
+<script>
+  export let teachers = [
+    {
+      name: '',
+      bio: ''
+    }
+  ]
+
+  $: console.log(teachers)
+</script>
+
 <svelte:head>
   <title>Přehled učitelů | Skillnes</title>
 </svelte:head>
@@ -15,6 +46,14 @@
         alt="cover"
       />
     </div>
+  </section>
+  <section>
+    {#each teachers as teacher}
+      <p>name: {teacher.name}</p>
+      <p>bio: {teacher.bio}</p>
+    {:else}
+      <p>Nikdo nenalezen</p>
+    {/each}
   </section>
 </main>
 

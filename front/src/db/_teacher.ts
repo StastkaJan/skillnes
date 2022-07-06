@@ -6,7 +6,23 @@ export const getAllTeachers = async () => {
   let db = new DBConnection()
 
   try {
-    const res = await db.query(`SELECT * FROM ${dbName}`)
+    const res = await db.query(`SELECT * FROM ${dbName} WHERE`)
+    return res?.rows
+  } catch (err) {
+    console.log(err)
+    throw err
+  }
+}
+
+export const getAllActiveTeachers = async () => {
+  let db = new DBConnection()
+
+  try {
+    const res = await db.query(`
+      SELECT name, bio FROM ${dbName}
+        INNER JOIN public.users on ${dbName}."user" = public.users.id
+        WHERE ${dbName}.active like $1
+    `, ['T'])
     return res?.rows
   } catch (err) {
     console.log(err)
