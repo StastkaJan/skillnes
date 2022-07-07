@@ -1,4 +1,10 @@
 <script>
+  import IconCube from '$comp/micro/iconCube.svelte'
+  import QuickProfile from '$comp/micro/quickProfile.svelte'
+  import Phone from '$icons/phone.svelte'
+  import Community from '$icons/community.svelte'
+  import Internet from '$icons/internet.svelte'
+
   let search = ''
 
   function searchText(e) {
@@ -23,6 +29,11 @@
         bind:value={search}
         on:keypress={searchText}
       />
+      <span>
+        <a href="/subjects">Matematika</a> |
+        <a href="/subjects">Čeština</a> |
+        <a href="/subjects">Právo</a>
+      </span>
     </div>
     <div>
       <img
@@ -31,27 +42,54 @@
       />
     </div>
   </section>
-  <section>
-    <h2>3 Kocky</h2>
+  <section class="cubes">
+    <IconCube title={'Jsme propojení'}>
+      <Internet />
+    </IconCube>
+    <IconCube title={'Jsme komunita'}>
+      <Community />
+    </IconCube>
+    <IconCube title={'Umíme volat'}>
+      <Phone />
+    </IconCube>
   </section>
-  <section>
-    <h2>O službě</h2>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam harum quam saepe, quod fugit
-      nemo recusandae itaque ratione distinctio necessitatibus veniam ipsam tenetur, id ullam
-      dolores autem facere explicabo dolore.
-    </p>
+  <section class="info">
+    <div>
+      <img
+        src="https://trirama.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.png"
+        alt="cover"
+      />
+    </div>
+    <div>
+      <h2>O službě</h2>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam harum quam saepe, quod
+        fugit nemo recusandae itaque ratione distinctio necessitatibus veniam ipsam tenetur, id
+        ullam dolores autem facere explicabo dolore.
+      </p>
+    </div>
+    <div>
+      <h2>Jak to funguje?</h2>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam harum quam saepe, quod
+        fugit nemo recusandae itaque ratione distinctio necessitatibus veniam ipsam tenetur, id
+        ullam dolores autem facere explicabo dolore.
+      </p>
+    </div>
+    <div>
+      <img
+        src="https://trirama.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.png"
+        alt="cover"
+      />
+    </div>
   </section>
-  <section>
-    <h2>Jak to funguje?</h2>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam harum quam saepe, quod fugit
-      nemo recusandae itaque ratione distinctio necessitatibus veniam ipsam tenetur, id ullam
-      dolores autem facere explicabo dolore.
-    </p>
-  </section>
-  <section>
+  <section class="profiles">
     <h2>Učitelé měsíce</h2>
+    <div>
+      <QuickProfile />
+      <QuickProfile />
+      <QuickProfile />
+    </div>
   </section>
 </main>
 
@@ -68,13 +106,10 @@
   }
   section:first-of-type {
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
   }
   h1,
-  span {
+  span,
+  span > a {
     color: #fff;
   }
   h1 span {
@@ -85,8 +120,9 @@
     padding: 0.7em;
     max-width: 300px;
   }
-  div {
-    max-width: 40%;
+  section:first-of-type div,
+  section.info div {
+    max-width: 500px;
   }
   img {
     border-radius: 20px;
@@ -94,5 +130,11 @@
   h2 {
     width: 100%;
     text-align: center;
+  }
+  section.profiles > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 50px;
   }
 </style>

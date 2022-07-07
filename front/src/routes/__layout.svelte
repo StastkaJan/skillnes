@@ -8,8 +8,6 @@
   import Register from '$comp/register.svelte'
   import Loader from '$comp/loader.svelte'
 
-  $: console.log($navigating)
-
   let notifText = 'Text',
     notifType = 'success',
     notifVisible = false
