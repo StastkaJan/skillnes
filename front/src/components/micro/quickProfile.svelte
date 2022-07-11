@@ -15,7 +15,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    max-width: 200px;
+    max-width: 150px;
   }
   img {
     border-radius: 50%;

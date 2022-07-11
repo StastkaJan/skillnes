@@ -1,5 +1,7 @@
 <script>
   import { navigating } from '$app/stores'
+  import { page } from '$app/stores'
+  import Transtition from '$comp/transtition.svelte'
   import Header from '$comp/header.svelte'
   import Footer from '$comp/footer.svelte'
   import Notification from '$comp/notification.svelte'
@@ -43,7 +45,9 @@
   <Loader />
 {/if}
 
+<!--<Transtition url={String($page.url)}>-->
 <slot />
+<!--</Transtition>-->
 
 <Popup {title} bind:visible>
   {#if title === 'Přihlášení'}

@@ -3,6 +3,7 @@
 }
 html {
   font-family: 'Red Hat Display', sans-serif;
+  scroll-behavior: smooth;
 }
 img {
   width: 100%;

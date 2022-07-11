@@ -72,6 +72,8 @@
 <div class="container">
   <h1>Profil učitele</h1>
 
+  <input type="file" name="img" accept="image/*" />
+
   <form on:submit|preventDefault={saveDetails}>
     <ActiveCheckbox bind:active />
     <SiteInput bind:site />

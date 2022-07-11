@@ -4,9 +4,11 @@
   import Phone from '$icons/phone.svelte'
   import Community from '$icons/community.svelte'
   import Internet from '$icons/internet.svelte'
+  import placeholder from '$img/placeholder.png'
 
   let search = ''
 
+  // @ts-ignore
   function searchText(e) {
     if (e.key === 'Enter') {
       console.log(search)
@@ -36,10 +38,7 @@
       </span>
     </div>
     <div>
-      <img
-        src="https://trirama.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.png"
-        alt="cover"
-      />
+      <img src={placeholder} alt="cover" />
     </div>
   </section>
   <section class="cubes">
@@ -55,10 +54,7 @@
   </section>
   <section class="info">
     <div>
-      <img
-        src="https://trirama.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.png"
-        alt="cover"
-      />
+      <img src={placeholder} alt="cover" />
     </div>
     <div>
       <h2>O službě</h2>
@@ -77,10 +73,7 @@
       </p>
     </div>
     <div>
-      <img
-        src="https://trirama.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.png"
-        alt="cover"
-      />
+      <img src={placeholder} alt="cover" />
     </div>
   </section>
   <section class="profiles">
@@ -120,9 +113,11 @@
     padding: 0.7em;
     max-width: 300px;
   }
-  section:first-of-type div,
-  section.info div {
+  section:first-of-type div {
     max-width: 500px;
+  }
+  section.info div {
+    max-width: 400px;
   }
   img {
     border-radius: 20px;

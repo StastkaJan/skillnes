@@ -10,7 +10,8 @@ const config = {
       $routes: 'src/routes',
       $store: 'src/store',
       $val: 'src/validate',
-      $icons: 'src/icons'
+      $icons: 'src/icons',
+      $img: 'src/img'
     },
     csp: {
       directives: {
